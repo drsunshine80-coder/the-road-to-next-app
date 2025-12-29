@@ -5,7 +5,11 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { ticketPath, ticketsPath } from "@/paths";
 
-export const upsertTicket = async (id: string | undefined, formData: FormData) => {
+export const upsertTicket = async (
+  id: string | undefined,
+  _actionState: {message: string},
+  formData: FormData
+) => {
   const data = {
     title: formData.get("title") as string,
     content: formData.get("content") as string,
@@ -22,4 +26,6 @@ export const upsertTicket = async (id: string | undefined, formData: FormData) =
   if (id) {
     redirect(ticketPath(id));
   }
+
+  return { message: "Ticket created" };
 }
