@@ -6,7 +6,13 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Ticket } from "@/generated/prisma/client";
 import { ticketEditPath, ticketPath } from "@/paths";
 import { deleteTicket } from "../actions/delete-ticket";
@@ -67,6 +73,10 @@ const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
             {ticket.content}
           </p>
         </CardContent>
+        <CardFooter className="flex justify-between">
+          <p className="text-sm text-muted-foreground">{ticket.deadline}</p>
+          <p className="text-sm text-muted-foreground">{ticket.bounty}</p>
+        </CardFooter>
       </Card>
       <div className="flex flex-col gap-y-1">
         {isDetail ? (
